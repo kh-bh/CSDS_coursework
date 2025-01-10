@@ -1,0 +1,114 @@
+---
+title: "Homework 2"
+subtitle: "Bhoomika Khatri"
+date: "`r Sys.Date()`"
+format: pdf
+---
+
+# Data Cleaning in R
+
+You will use R to clean some data.
+
+## 1. Load the library dplyr
+
+```{r library}
+library(dplyr)
+```
+
+## 2. Read in the .csv file gapminder dataset
+
+It is in the subfolder of this folder.
+
+```{r readdata}
+getwd()
+setwd("./datafiles")
+gapMinderData <- read.csv("gapminder.csv")
+```
+
+## 3. Do some preliminary data exploration with str and summary functions.
+
+Comment your code with 2 interesting things you see
+
+```{r explore}
+str(gapMinderData) #there are 5 years in between the years of data for each country 
+the_summary <- summary(gapMinderData) #there are about 12 instances of each country if it was around since 1952
+```
+
+## 4. Clean the data by converting the character class columns to factors
+
+```{r clean}
+gapMinderData$country <- as.factor(gapMinderData$country)
+gapMinderData$continent <- as.factor(gapMinderData$continent)
+
+```
+
+## 5. Use the functions in dplyr such as filter(), select(), mutate(), etc to explore your data and identify something interesting in your the gapminder data frame. Describe what you identified. (2)
+
+```{r explore_dplyr}
+gapMinderData %>% dplyr::select(continent, country, lifeExp, year) %>% filter(lifeExp <= 30) 
+```
+
+-   There are only 3 countries that have a life expectancy of under (or equal) to 30 in the span of 1952 - 2007, and all of them are from 1952. This means that between 1952 and 197, all countries had a life expectancy of over 30 increased their life expectancy.
+
+## 6. Use the functions in dplyr such as filter(), select(), mutate(), etc to explore your data and identify something interesting in your the gapminder data frame. Describe what you identified. (2)
+
+```{r explore_dplyr2}
+gapMinderData %>% arrange(desc(gdpPercap)) %>% group_by(continent) %>% summarize(Ave = ave(gdpPercap), Max = max(gdpPercap)) %>% unique() %>% arrange((Max))
+```
+
+-   Surprisingly, Oceania had the highest average GDP and Asia had the highest GDP. I would've expected that Europe or the Americans would have the highest GDP due to the western countries, but it didn't end up that way.
+
+## 7. Use the functions in dplyr such as filter(), select(), mutate(), etc to explore your data and identify something interesting in your the gapminder data frame. Describe what you identified. (2)
+
+```{r explore_dplyr3}
+gapMinderData  %>% arrange(desc(pop),year) %>% group_by(country) %>% summarize(change = max(pop)-min(pop)) %>% unique() %>% arrange((change))
+```
+
+-   This data set shows that most countries had a drastic change from the minimum population size of the country to the maximum size of the data set. The country with the largest change is China and the country with the smallest change is Sao Tome and Principe. Coincidentally, these are also the least and largest populations (respectively).
+
+## 8. Use the functions in dplyr such as filter(), select(), mutate(), etc to explore your data and identify something interesting in your the gapminder data frame. Describe what you identified. (2)
+
+```{r explore_dplyr4}
+gapMinderData %>% dplyr::select(continent, country, lifeExp, year) %>% filter(lifeExp >= 70) %>% arrange(year)
+```
+
+-   The earliest year that the life expectancy was over 70 was 1952, which was right after WW2. I was surprised that the life expectancy was so high even that early. The country that had the highest life expectancy in 1952 was Iceland, which tracks with the fact that they have the highest life expectancy on average over the whole dataset.
+
+## 9. Use the functions in dplyr such as filter(), select(), mutate(), etc to explore your data and identify something interesting in your the gapminder data frame. Describe what you identified. (2)
+
+```{r explore_dplyr5}
+gapMinderData %>% dplyr::select(continent, country, gdpPercap, year) %>% filter(year == 2002) %>% arrange(gdpPercap)
+```
+
+-   In 2002, the country with the highest GDP was Norway and the country with the lowest GDP was the DRC. The difference between the countries is about 44442.81. This is a very large amount.
+
+## 10. Make a histogram of Life Expectancy with base R plotting functions
+
+```{r base_histo}
+hist(gapMinderData$lifeExp)
+```
+
+## 11. Make a plot of your choosing
+
+```{r plot}
+boxplot(gapMinderData$lifeExp ~ gapMinderData$continent, ylab = "Life Expectancy", xlab = "Continent")
+
+```
+
+## 12. How do R and Python index differently
+
+-   R indexes from 1 while Python indexes from 0.
+
+## 13. What does the function c() in R and the function concatenate() do?
+
+-   c() in R combines values into a vector and returns a vector in a 1D array
+-   concatenate() in R combines two string/character vectors into one vector
+
+## 14. What is the most important thing you should consider when starting a data analysis project for someone?
+
+-   Have the question that the person wants answered clear so that the scope of the project is clear, the observations can be more relevant, and the final users of the analysis can understand the analysis completely.
+
+## 15. What is the difference between discrete and continuous data?
+
+-   Discrete data is represented as exact values that can be counted (integer values)
+-   Continuous data contains values that are measured over a time interval (can contains complex numbers)

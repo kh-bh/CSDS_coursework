@@ -1,0 +1,50 @@
+---
+title: "Homework-6: Pairwise Association"
+format: pdf
+---
+
+## Problem 1
+
+The New York Times director is investigating the relationship between where a subscriber lives and which sections of the newspaper they read first. Use the collected sample information to answer the following questions:
+
+|          | Politics  | Editorial | Sports |
+|:--------:|:---------:|:---------:|:------:|
+| City     | 170       | 124       | 90     |
+| Suburb   | 120       | 130       | 100    |
+| Rural    | 130       | 90        | 88     |
+
+a. At the 95% confidence level, is it reasonable to conclude that the section read first and the community where a reader resides are dependent?
+
+```{r Question 1 A}
+
+politics <- c(170,120,130)
+editorial <- c(124,130,90)
+sports <- c(90,100,88)
+NewYorkTimeData <- data.frame(politics, editorial, sports)
+
+result <- chisq.test(NewYorkTimeData)
+p_value <- result$p.value
+print(p_value)
+alpha <- 0.05
+
+```
+> Since the p-value of 0.03242511 is smaller than the alpha value of 0.05, we reject the null hypothesis. We can not be 95% sure that the section read first and the community where a reader resides are dependent.
+
+b. What is the largest chi-square value? What is the meaning of this value?
+
+```{r Question 1 B}
+
+total <- sum(NewYorkTimeData)
+row_totals <- rowSums(NewYorkTimeData)
+col_totals <- colSums(NewYorkTimeData)
+expected <- outer(row_totals, col_totals) / total
+
+# Calculate chi-squared contributions for each cell
+chi_squared_contributions <- (NewYorkTimeData - expected)^2 / expected
+
+# Total chi-square statistic
+total_chi_square <- sum(chi_squared_contributions)
+
+# Print chi-squared contributions for each cell
+print(chi_squared_contributions)
+```
