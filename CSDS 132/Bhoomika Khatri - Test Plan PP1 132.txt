@@ -1,0 +1,186 @@
+Bhoomika Khatri - Test Plan Programming Project 1 : CSDS 132
+
+This test is meant to test all of the get and set methods in Phone Plan. I was expecting to get the value I entered in the statement (the set method) prior when I run the get method right after it. I made sure to try different numbers to make sure that all of the tests were different numbers to make sure that all the get methods were pulling the correct method. All of the tests ran as expected.
+> PhonePlan test = new PhonePlan()
+> test.setMonthlyCharge(123.456)
+> test.getMonthlyCharge()
+123.456
+> test.setMessageLimit(123)
+> test.getMessageLimit()
+123
+> test.setMinuteLimit(456)
+> test.getMinuteLimit()
+456
+> test.setDataLimit(789)
+> test.getDataLimit()
+789
+> test.setMinuteRate(10.45)
+> test.getMinuteRate()
+10.45
+> test.setMessageRate(20.15)
+> test.getMessageRate()
+20.15
+> test.setDataRate(19.19)
+> test.getDataRate()
+19.19
+> test.setAllowRoaming(true);
+> test.allowRoaming()
+true
+> test.setRoamingRate(30.15)
+> test.getRoamingRate()
+30.15
+
+
+This is the test for the constructors (in PhonePlan) to see if they worked. Each constructor had a different value assigned to it, and in theory it was meant to run through in order. All of the values are assigned correctly and worked as expected, the reason they are out of order is because I accidently ran the wrong one at the wrong time. This test confirmed that all the constructors worked and pulled from the correct method. 
+
+> PhonePlan test = new PhonePlan(3.54, 1, 2, 3, 4.5, 6.7, 8.9,true,12.13)
+> test.getMonthlyCharge()
+3.54
+> test.getMinuteLimit()
+1
+> test.getMessageLimit()
+2
+> test.getDataLimit()
+3
+> test.getMinuteRate()
+4.5
+> test.getDataRate()
+8.9
+> test.getMessageRate()
+6.7
+> test.allowRoaming()
+true
+> test.getRoamingRate()
+12.13
+> 
+
+
+This is the tester for Phone Account. This is the test for all of Phone Accounts method up to the if statements, so it tested every get and set method. The first test was to make sure that data/message/minute balance was set to 0, which is wouldn't happen without first initializing start month. The phone plan was able to connect to get phone plan but I wasn't able to connect the Phone Number to the phone plan so it would always have null as the result. 
+> PhoneAccount tester = new PhoneAccount()
+> tester.startMonth()
+> tester.getDataBalance()
+0
+> tester.getMessageBalance()
+0
+> tester.getMinuteBalance()
+0
+> tester.setActivated(false)
+> tester.isActivated()
+false
+> PhonePlan test = new PhonePlan(3.54, 1, 2, 3, 4.5, 6.7, 8.9,true,12.13)
+> tester.setPhonePlan(test)
+> tester.getPhonePlan()
+PhonePlan@43c159fb
+> tester.getPhoneNumber()
+null
+> 
+
+
+This is the test for the ability to send texts (or not send texts). First I would make sure to set the message and make sure that the phone plan needed a value before it tried to evaluate whether you could or could not send a text message. Each of the tests worked as expected, and what I expected was commented before I tested the values. (Null should have been false, true; not null and true should have been false (with specific values), true; not null and true should have been true (with specific values); true) 
+> PhonePlan test = new PhonePlan(3.54, 1, 2, 3, 4.5, 6.7, 8.9,true,12.13)
+> PhoneAccount tester = new PhoneAccount()
+> tester.startMonth()
+> tester.getMessageBalance()
+200
+> tester.getPhoneNumber()
+null
+> tester.sendTextMessage(true) // I expect false
+false
+> tester.setPhonePlan(test)
+> tester.getPhoneNumber()
+null
+> tester.getPhonePlan()
+PhonePlan@21ea0622
+> test.allowRoaming()
+true
+> test.setAllowRoaming(false)
+> test.allowRoaming()
+false
+> tester.sendTextMessage(true) // I expect false
+false
+> test.setAllowRoaming(true)
+> test.allowRoaming()
+true
+> test.getMessageLimit()
+2
+> tester.getMessageBalance()
+200
+> tester.sendTextMessage(true) // I expect true!!
+true
+>
+
+
+This test case was for testing if the useData clause worked and if each variation worked. I commented what I expected to happen after and each of the tests worked as expected. I had to have two plans, one for a new PhonePlan and one for a new PhoneAccount. This one needed to make sure that the conditional of data rate and data balance worked correctly, which it seemed to.
+> PhonePlan test = new PhonePlan(3.54, 1, 2, 3, 4.5, 6.7, 8.9,true,12.13)
+> PhoneAccount tester = new PhoneAccount()
+> PhonePlan test = new PhonePlan(3.54, 1, 2, 3, 4.5, 6.7, 8.9,true,12.13)
+> PhoneAccount tester = new PhoneAccount()
+> tester.getPhonePlan()
+null
+> tester.useData(200,true) // I expect false
+false
+> tester.setPhonePlan(test)
+> tester.getPhonePlan()
+PhonePlan@658e40bb
+> test.getRoamingRate()
+12.13
+> test.allowRoaming()
+true
+> test.setAllowRoaming(false)
+> test.allowRoaming()
+false
+> tester.useData(20,true) // I expect false
+false
+> test.setAllowRoaming(true)
+> test.setDataRate(100)
+> tester.getDataBalance()
+0
+> test.getDataLimit()
+3
+> tester.useData(0,true)
+true
+> tester.getDataBalance()
+0
+> tester.useData(5,true) // This should return false
+false
+> tester.useData(2,true) // This should return true and after should return 2
+true
+> tester.getDataBalance()
+2
+
+
+This is the test for the get and set methods and the set new  The customer account test worked for setting each get and set method as well as the set account phone 1. 
+CustomerAccount test = new CustomerAccount()
+> test.setName("Jocelyn")
+> test.getName()
+"Jocelyn"
+> test.setAddress("9229 Homely")
+> test.getAddress()
+"9229 Homely"
+> PhonePlan newTest = new PhonePlan()
+Static Error: No constructor in PhonePlan matches this invocation
+    Arguments: ()
+    Expected return type: PhonePlan
+    Candidate signatures: PhonePlan(double, int, int, int, double, double, double, boolean, double)
+> PhonePlan newTest = new PhonePlan(1.23,4,5,6,7.89,10.11,12.13,true,14.15)
+> test.setPhoneAccount1(newTest)
+Static Error: No method in CustomerAccount with name 'setPhoneAccount1' matches this invocation
+    Arguments: (PhonePlan)
+    Candidate signatures: void setPhoneAccount1(PhoneAccount)
+> PhoneAccount newTest = new PhoneAccount()
+> test.setPhoneAccount1(newTest)
+> test.getPhoneAccount1()
+PhoneAccount@5579455d
+> test.getCashBalance()
+0.0
+
+This test was supposed to test the process at the End of the Month. I wasn't able to get the initial if statement to work correctly, which I expected to have problems further down the line, but I forgot to consider that if the initial if statement wasn't working it would be a bit harder to test the other scenarios. Nevertheless, it didn't work with the first test because there was something wrong in the code. I'm pretty sure it was because of a misassignment.
+> CustomerAccount test = new CustomerAccount("name","2819")
+> test.processEndOfMonth()
+java.lang.NullPointerException
+	at CustomerAccount.processEndOfMonth(CustomerAccount.java:71)
+> CustomerAccount test = new CustomerAccount("name","2819")
+> test.increaseBalance(2.5)
+> test.amount
+Static Error: No field in CustomerAccount has name 'amount'
+

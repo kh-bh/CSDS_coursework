@@ -1,0 +1,9 @@
+/**
+ * @author Bhoomika Khatri
+ */
+
+/**
+ * A class to represent a domino and the function to rotate dominoes
+ */
+public class DominoTrain extends LinkedList<Domino> {
+}

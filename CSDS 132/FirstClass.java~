@@ -1,0 +1,19 @@
+public abstract class FirstClass {
+  
+  public abstract double perimeter();
+  public void FirstClass() {
+    
+  }
+  
+  public void addOne() {
+    int i = 0;
+    i++;
+  }
+  
+  public void subtractOne() {
+    int j = 0;
+    j--;
+  }
+  
+  public 
+}

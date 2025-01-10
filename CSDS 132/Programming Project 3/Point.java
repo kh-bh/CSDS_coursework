@@ -1,0 +1,78 @@
+/**
+ * @author Bhoomika Khatri
+ */
+
+/**
+ * A class that creates a 3 dimensional point (x,y,z)
+ */
+import java.lang.Math;
+public class Point extends PointConcepts {
+  
+  /** 
+   * the field that stores the x-coordinate of the point
+   */
+  private double x;
+  
+  /** 
+   * the field that stores the y-coordinate of the point
+   */
+  private double y;
+  
+  /** 
+   * the field that stores the z-coordinate of the point
+   */
+  private double z;
+  
+  /**
+   * the constructor
+   * @param x  the x coordinate of the point
+   * @param y  the y coordinate of the point
+   * @param z  the z coordinate of the point
+   */
+  public Point (double x, double y, double z) {
+    super(x,y,z);
+  }
+  
+  /** 
+   * A method that returns a string verion of the location of the point, an overriden toString from Object
+   */
+  @Override
+  public String toString() {
+    return "(" + getX() + "," + getY() + "," + getZ() + ")";
+  }
+  
+  /**
+   * A method that returns if two points are equal, an overriden equals from Object
+   * @param obj  the point that is being evaluates
+   * @return equals  whether the two points are the same or not
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (obj instanceof Point) {
+      Point comparePoint = (Point)obj;
+      if ((this.getX() == comparePoint.getX()) && 
+          (this.getY() == comparePoint.getY()) && 
+          (this.getZ() == comparePoint.getZ())) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+    return false;
+  }
+  
+  /**
+   * A method that returns the distance of two points
+   * @param p1  the first point to find the distance from
+   * @param p2  the second point to find the distance from
+   * @return distance  the value of the distance between the two points
+   */
+  public static double distance (Point p1, Point p2) {
+    double value = (Math.pow(p1.getX() - p2.getX(),2.0) 
+                      + Math.pow(p1.getY() - p2.getY(),2.0) 
+                      + Math.pow(p1.getZ() - p2.getZ(),2.0));
+    return (Math.sqrt(value));
+  }
+}
+

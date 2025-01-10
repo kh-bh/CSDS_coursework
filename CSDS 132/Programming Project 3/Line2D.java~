@@ -1,0 +1,44 @@
+/**
+ * @auth Bhoomika Khatri
+ */
+
+/**
+ * A class that creates a 2 dimensional Line
+ */
+import java.lang.Math;
+public class Line2D extends Line{
+  
+  /** 
+   * the field that stores the x-coordinate of the first point
+   */
+  private double p1X;
+  
+  /** 
+   * the field that stores the x-coordinate of the second point
+   */
+  private double p2X;
+  
+  /** 
+   * the field that stores the y-coordinate of the first point
+   */
+  private double p1Y;
+  
+  /** 
+   * the field that stores the y-coordinate of the second point
+   */
+  private double p2Y;
+  
+  /**
+   * the constructor
+   * @param p1  the first point used to construct the line
+   * @param p2  the second point used to construct the line
+   */
+  public Line2D (PointConcepts p1, PointConcepts p2) {
+    super((Point2D)p1, (Point2D)p2);
+    this.p1X = p1.getX();
+    this.p2X = p2.getX();
+    this.p1Y = p1.getY();
+    this.p2Y = p2.getY();
+  }
+  
+}

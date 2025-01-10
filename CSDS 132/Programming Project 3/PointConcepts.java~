@@ -1,0 +1,43 @@
+/**
+ * @auth Bhoomika Khatri
+ */
+
+/*
+ * An abstract class that creates an overarching class for all point concepts
+ */
+public abstract class PointConcepts extends Calculus {
+  
+  private double x;
+  
+  private double y;
+  
+  private double z;
+  
+  public PointConcepts(double x, double y, double z) {
+    this.x = x;
+    this.y = y;
+    this.z = z;
+  }
+  
+  /**
+  * A method that returns what x-value the point is at
+  */
+  public double getX() {
+    return x;
+  }
+  
+  /**
+   * A method that returns what y-value the point is at
+   */
+
+  public double getY() {
+    return y;
+  }
+  
+  /**
+  * A method that returns what z-value the point is at
+  */
+  public double getZ() {
+    return z;
+  }
+}

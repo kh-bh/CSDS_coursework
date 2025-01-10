@@ -1,0 +1,250 @@
+/**@author Bhoomika Khatri */
+import javafx.application.Application;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.control.Button;
+import javafx.event.EventHandler;
+import javafx.event.ActionEvent;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.stage.StageStyle;
+import javafx.scene.layout.HBox;
+import javafx.application.Application.Parameters;
+import javafx.scene.layout.VBox;
+import javafx.scene.layout.Region;
+import javafx.scene.control.Label;
+import javafx.application.Application.Parameters;
+import javafx.scene.layout.GridPane;
+
+public class MexicanTrainGame extends Application {
+  
+  private Button twoPlayer;
+  private Button threePlayer;
+  private Button fourPlayer;
+  
+  private Button addToMTrain = new Button("Add");;
+  private Button addTo1Train = new Button("Add");;
+  private Button addTo2Train = new Button("Add");;
+  private Button addTo3Train = new Button("Add");;
+  private Button addTo4Train = new Button("Add");;
+  
+  private Button addToTrain1;
+  private Button addToTrain2;
+  private Button addToTrain3;
+  private Button addToTrain4;
+  
+  private DominoArray da = new DominoArray(0,0,9);
+  private LinkedList dL = da.createArrayList();
+  
+  private Stage player1 = new Stage();
+  private Stage player2 = new Stage();
+  private Stage player3 = new Stage();
+  private Stage player4 = new Stage();
+  
+  private Label player1Train = new Label("Player 1's Train: ");
+  private Label player2Train = new Label("Player 2's Train: ");
+  private Label player3Train = new Label("Player 3's Train: ");
+  private Label player4Train = new Label("Player 4's Train: ");
+  private Label mexicanTrain = new Label("Mexican Train: ");
+  
+  private Stage buttonForPlayers = new Stage();
+  
+  private int players = 0;
+  
+  /**
+   * @param primaryStage the main window of the GUI
+   */
+  public void start(Stage primaryStage) {
+    // layout manager for how many players are playing
+    BorderPane layout = new BorderPane();
+    twoPlayer = new Button("Click for a Two Player Game");
+    threePlayer = new Button("Click for a Three Player Game");
+    fourPlayer = new Button("Click for a Four Player Game");
+    layout.setTop(twoPlayer);
+    layout.setCenter(threePlayer);
+    layout.setBottom(fourPlayer);
+    MyButtonAction myAction = new MyButtonAction();
+    twoPlayer.setOnAction(myAction);
+    threePlayer.setOnAction(myAction);
+    fourPlayer.setOnAction(myAction);
+    
+    int p = Integer.parseInt(this.getParameters().getRaw().get(0));
+    
+    if (p == 2) 
+      players = 2;
+    else if (p == 3)
+      players = 3;
+    else if (p >= 4)
+      players = 4;
+    else
+      players = 2;
+    System.out.println(players);
+    Scene scene = new Scene(layout);
+    
+    buttonForPlayers.setScene(scene);
+    buttonForPlayers.show();
+    
+    
+    
+    // put the layout manager into the window
+    HBox mbox = new HBox();
+    HBox p1box = new HBox();
+    HBox p2box = new HBox();
+    HBox p3box = new HBox();
+    HBox p4box = new HBox();
+    
+    VBox vb = new VBox();
+    
+    if (players == 2){ 
+      mbox.getChildren().addAll(mexicanTrain, addToMTrain);
+      p1box.getChildren().addAll(player1Train, addTo1Train);
+      p2box.getChildren().addAll(player2Train, addTo2Train);
+      vb.getChildren().addAll(mbox,p1box,p2box);
+    }
+    if (players == 3){ 
+      mbox.getChildren().addAll(mexicanTrain, addToMTrain);
+      p1box.getChildren().addAll(player1Train, addTo1Train);
+      p2box.getChildren().addAll(player2Train, addTo2Train);
+      p3box.getChildren().addAll(player3Train, addTo3Train);
+      vb.getChildren().addAll(mbox,p1box,p2box,p3box);
+    }
+    if (players == 4){ 
+      mbox.getChildren().addAll(mexicanTrain, addToMTrain);
+      p1box.getChildren().addAll(player1Train, addTo1Train);
+      p2box.getChildren().addAll(player2Train, addTo2Train);
+      p3box.getChildren().addAll(player3Train, addTo3Train);
+      p4box.getChildren().addAll(player4Train, addTo4Train);
+      vb.getChildren().addAll(mbox,p1box,p2box,p3box,p4box);
+    }
+    
+    Scene sceneTrain = new Scene(vb);
+    
+    primaryStage.setScene(sceneTrain);
+    primaryStage.show();
+  }
+  
+  /**
+   * Start the GUI
+   * @param args the command line arguments are currently ignored
+   */
+  public static void main(String[] args) {
+    Application.launch(args);
+  }
+  
+  /** When a button is clicked, this will call for the correct amount of players */
+  private class MyButtonAction implements EventHandler<ActionEvent> {
+    
+    /**
+     * The action is to display the stages for players
+     * @param e information about the click event
+     */
+    public void handle(ActionEvent e) {
+      Button b = (Button)e.getSource();
+      
+      // This determines the amount of players!
+      if (b == twoPlayer){
+        VBox layout1 = new VBox();
+        Scene scene1 = new Scene(layout1);
+        addToTrain1 = new Button("Draw");
+        Label label1 = new Label("Player 1's Hand:");
+        layout1.getChildren().addAll(label1,addToTrain1);
+        
+        VBox layout2 = new VBox();
+        Scene scene2 = new Scene(layout2);
+        addToTrain2 = new Button("Draw");
+        Label label2 = new Label("Player 2's Hand:");
+        layout2.getChildren().addAll(label2,addToTrain2);
+        
+        players = 2;
+        player1.setScene(scene1);
+        player1.show();
+        player1.setTitle("Player 1");
+        
+        player2.setScene(scene2);
+        player2.show();
+        player2.setTitle("Player 2");
+        buttonForPlayers.hide();
+      }
+      if (b == threePlayer) {
+        VBox layout1 = new VBox();
+        Scene scene1 = new Scene(layout1);
+        addToTrain1 = new Button("Draw");
+        Label label1 = new Label("Player 1's Hand:");
+        layout1.getChildren().addAll(label1,addToTrain1);
+        
+        VBox layout2 = new VBox();
+        Scene scene2 = new Scene(layout2);
+        addToTrain2 = new Button("Draw");
+        Label label2 = new Label("Player 2's Hand:");
+        layout2.getChildren().addAll(label2,addToTrain2);
+        
+        VBox layout3 = new VBox();
+        Scene scene3 = new Scene(layout3);
+        addToTrain3 = new Button("Draw");
+        Label label3 = new Label("Player 3's Hand:");
+        layout3.getChildren().addAll(label3,addToTrain3);
+        
+        players = 3;
+        player1.setScene(scene1);
+        player1.show();
+        player1.setTitle("Player 1");
+        
+        player2.setScene(scene2);
+        player2.show();
+        player2.setTitle("Player 2");
+        buttonForPlayers.hide();
+        
+        player3.setScene(scene3);
+        player3.show();
+        player3.setTitle("Player 3");
+      }
+      if (b == fourPlayer) {
+        VBox layout1 = new VBox();
+        Scene scene1 = new Scene(layout1);
+        addToTrain1 = new Button("Draw");
+        Label label1 = new Label("Player 1's Hand:");
+        layout1.getChildren().addAll(label1,addToTrain1);
+        
+        VBox layout2 = new VBox();
+        Scene scene2 = new Scene(layout2);
+        addToTrain2 = new Button("Draw");
+        Label label2 = new Label("Player 2's Hand:");
+        layout2.getChildren().addAll(label2,addToTrain2);
+        
+        VBox layout3 = new VBox();
+        Scene scene3 = new Scene(layout3);
+        addToTrain3 = new Button("Draw");
+        Label label3 = new Label("Player 3's Hand:");
+        layout3.getChildren().addAll(label3,addToTrain3);
+        
+        VBox layout4 = new VBox();
+        Scene scene4 = new Scene(layout4);
+        addToTrain4 = new Button("Draw");
+        Label label4 = new Label("Player 4's Hand:");
+        layout4.getChildren().addAll(label4,addToTrain4);
+        
+        players = 4;
+        player1.setScene(scene1);
+        player1.show();
+        player1.setTitle("Player 1");
+        
+        player2.setScene(scene2);
+        player2.show();
+        player2.setTitle("Player 2");
+        buttonForPlayers.hide();
+        
+        player3.setScene(scene3);
+        player3.show();
+        player3.setTitle("Player 3");
+        
+        player4.setScene(scene4);
+        player4.show();
+        player4.setTitle("Player 4");
+        buttonForPlayers.hide();
+      }
+      
+      //This will be what the buttons for each player does
+    }
+  }
+}

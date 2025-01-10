@@ -1,0 +1,19 @@
+/**
+ * @auth Bhoomika Khatri
+ */
+
+/*
+ * An abstract class that creates an overarching class for all geometry concepts
+ */
+public abstract class Calculus extends Object {
+  
+  @Override
+  public boolean equals(Object obj) {
+    return false;
+  }
+  
+  @Override
+  public String toString(){
+    return "Not yet done :(";
+  }
+}

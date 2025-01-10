@@ -1,0 +1,41 @@
+// Bhoomika Khatri
+
+// These are the imported things to be able to test
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+//This is a class that tests the methods from HW2
+public class HW2Tester {
+  
+  // This is a method that tests onlyEnglishLetters
+  @Test
+  public void testOnlyEnglishLetters () {
+    assertEquals (false, HW2.onlyEnglishLetters("")); // Test none
+    assertEquals (true, HW2.onlyEnglishLetters("a")); // Test one
+    assertEquals (false, HW2.onlyEnglishLetters("1!")); // Test two?
+    assertEquals (true, HW2.onlyEnglishLetters("abDkfdoFRs")); // Test many
+    assertEquals (false, HW2.onlyEnglishLetters("lFKe5aaa"));
+  }
+  
+  @Test
+  // This is a method that tests if the method being tested will replace the correct index 
+  public void testReplaceKth () {
+    assertEquals ("abcaxa", HW2.replaceKth('a', 'x', 3, "abcaaa"));
+    assertEquals ("aaaaa",HW2.replaceKth('a', 'x', 6, "aaaaa"));
+  }
+  
+  @Test
+  // This is a method that tests if the method being tested with intertwine the two strings correctly
+  public void testInterleave () {
+    assertEquals ("AaBbCcde", HW2.interleave("ABC", "abcde"));
+    assertEquals ("aAbBcCde", HW2.interleave("abcde", "ABC"));
+  }
+  
+  @Test
+  // This is a method that tests if the blank words method will successfully create blank words
+  public void testBlankWords () {
+    assertEquals ("", HW2.blankWords("")); // Test none
+    assertEquals ("T", HW2.blankWords("T")); // Test one
+    assertEquals ("T__s is a T__t.", HW2.blankWords("This is a Test.")); //Test many
+  }
+}

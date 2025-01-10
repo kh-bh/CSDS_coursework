@@ -1,0 +1,31 @@
+  /*
+   * A method that returns if two points are equal, an overriden equals from Object
+   * @param obj  the point that is being evaluates
+   * @return equals  the 
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (obj instanceof Point) {
+      Point comparePoint = (Point)obj;
+      if ((this.getX() == comparePoint.getX()) && 
+          (this.getY() == comparePoint.getY())) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+    return false;
+  }
+  
+  /*
+   * A method that returns the distance of two points
+   * @param p1  the first 2D point to find the distance from
+   * @param p2  the second 2D point to find the distance from
+   * @return distance  the value of the distance between the two points
+   */
+  public static double distance (Point2D p1, Point2D p2) {
+    double value = (Math.pow(p1.getX() - p2.getX(),2.0) 
+                      + Math.pow(p1.getY() - p2.getY(),2.0));
+    return (Math.sqrt(value));
+  }

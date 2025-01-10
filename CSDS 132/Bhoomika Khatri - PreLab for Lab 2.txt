@@ -1,0 +1,16 @@
+Welcome to DrJava.  Working directory is C:\Users\bhoom
+> int x
+> x = 15
+15
+> double y
+> y=x
+15.0
+> y = y/4
+3.75
+> x = (int)y
+3
+> x
+3
+> y
+3.75
+> 

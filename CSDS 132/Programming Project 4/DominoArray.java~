@@ -1,0 +1,41 @@
+
+import java.util.ArrayList;
+import java.util.*;
+
+public class DominoArray extends Domino {
+  
+  /** A field that stores the first value of the domino */
+  private int dominoValue1;
+  
+  /** A field that stores the second value of the domino */
+  private int dominoValue2;
+  
+  /** A field that stores what domino is being used in the Mexican Train */
+  private int dominoValueForTrain = 9;
+  private ArrayList<Domino> arrayOfDominos = new ArrayList<Domino>();
+  
+  /**
+   * the constructor
+   * @param dominoValue1  the first domino's element
+   * @param dominoValue2  the second domino's element 
+   */
+  public DominoArray(int dominoValue1, int dominoValue2) {
+    super(dominoValue1, dominoValue2);
+  }
+  
+  public ArrayList createArrayList() {
+    for (int d1 = 0; d1 < 10; d1++) {
+      for (int d2 = 0; d2 < 10; d2++) {
+        arrayOfDominos.add(new Domino(d1,d2));
+      }
+    }
+    for (int i = 0; i < arrayOfDominos.size(); i++) {
+      System.out.println(arrayOfDominos.get(i));
+    }
+     Collections.shuffle(arrayOfDominos);
+     for (int i = 0; i < arrayOfDominos.size(); i++) {
+      System.out.println(arrayOfDominos.get(i));
+    }
+    return arrayOfDominos;
+  }
+}

@@ -1,0 +1,25 @@
+public class Comparison {
+  
+  // Creating a way to compare two methods
+  public String compareValues (int x, int y) {
+    
+    if (x > y) {
+      return (x + " is larger than " + y);
+    } else if (y > x) {
+      return (y + " is larger than " + x);
+    } else
+      return ("The two values are equal");
+  }
+}
+
+
+Interactions Pane:
+
+> Comparison trial = new Comparison()
+> trial.compareValues(10,90)
+"90 is larger than 10"
+> trial.compareValues(100,90)
+"100 is larger than 90"
+> trial.compareValues(100,100)
+"The two values are equal"
+> 

@@ -1,0 +1,67 @@
+/*
+ * @auth Bhoomika Khatri
+ */
+
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+public class TestCalculus {
+  
+  @Test
+  public void testPoint2DGetX () {
+    Point2D point = new Point2D(1.0,2.0);
+    assertEquals(1.0, point.getX(),0D);
+  }
+  
+  @Test
+  public void testPoint2DGetY() {
+    Point2D point = new Point2D(1.0,2.0);
+    assertEquals(2.0, point.getY(),0D);
+  }
+  
+  @Test
+  public void testPoint2DGetZ() {
+    Point2D point = new Point2D(1.0,2.0);
+    assertEquals(0.0, point.getZ(),0D);
+  }
+  
+  @Test
+  public void testPoint2DToString() {
+    Point2D point = new Point2D(1.0,2.0);
+    assertEquals("(1.0,2.0)", point.toString());
+  }
+  
+  @Test
+  public void testPoint2DEquals() {
+    Point2D p1 = new Point2D(1.0,2.0);
+    Point2D p2 = new Point2D(1.0,2.0);
+    Point2D p3 = new Point2D(2.0,2.0);
+    assertEquals(true, p1.equals(p2));
+    assertEquals(true, p2.equals(p2));
+    assertEquals(false, p3.equals(p2));
+  }
+  
+  @Test
+  public void testPointGetX() {
+    Point point = new Point(1.0,2.0,3.0);
+    assertEquals(1.0, point.getX(),0D);
+  }
+  
+  @Test
+  public void testPointGetY() {
+    Point point = new Point(1.0,2.0,3.0);
+    assertEquals(2.0, point.getY(),0D);
+  }
+  
+  @Test
+  public void testPointGetZ() {
+    Point point = new Point(1.0,2.0,3.0);
+    assertEquals(3.0, point.getZ(),0D);
+  }
+  
+  @Test
+  public void testPointToString() {
+    Point point = new Point(1.0,2.0,3.0);
+    assertEquals("(1.0,2.0,3.0)", point.toString());
+  }
+}

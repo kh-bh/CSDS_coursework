@@ -1,0 +1,212 @@
+// Bhoomika Khatri - Programming Project 2
+
+// This is a class that evaluates different strings and finds whether they meet given conditons
+public class HW2 {
+  
+  // This is a method that returns true/false given a string that has (or not) english characters
+  public static boolean onlyEnglishLetters (String evaluatedString) {
+    
+    /* This if statement evaluates if there is a string, and then figures out if each character of the string is an
+     * english character by running through the whole string 
+     * */
+    if (evaluatedString == "") {
+      return false;
+    }
+    else {
+      for (int index = 0; index < evaluatedString.length(); index++) {
+        char evalChar = evaluatedString.charAt(index);
+        if ((evalChar >= 'a' && evalChar <= 'z')|| (evalChar >= 'A' && evalChar <= 'Z')) {
+        }
+        else {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+  
+  // This is a method that replaces the kth instance of a given character with a different given character (if possible)
+  public static String replaceKth (char replaceInStringChar, char replacementChar, int position, String evalString){
+    
+    //This local variable records the amount of K's
+    int amountOfK = 0;
+    
+    // This local variable builds the string that will be returned
+    StringBuilder builder = new StringBuilder();
+    
+    for (int index = 0; index < evalString.length(); index ++) {
+      
+      // This if statement find all of the K's and counts them as well as appends to the string if it isn't the character
+      if (replaceInStringChar == evalString.charAt(index)) {
+        amountOfK = amountOfK + 1;
+        
+        // This if statement replaces the K if it under the amount of instances to be replaced
+        if (amountOfK == position){
+          builder.append(replacementChar);
+        }
+        else {
+          builder.append(replaceInStringChar);
+        }
+      }
+      else {
+        builder.append((evalString.charAt(index)));
+      }    
+    }
+    return (builder.toString());
+  }
+  
+  //This is a method that intertwines two different strings by first testing what the longest was, then interweaving them
+  public static String interleave(String firstString, String secondString) {
+    StringBuilder builder = new StringBuilder();
+    
+    // This field records the longer string
+    int lengthOfLongest;
+    
+    // This if statement decalres the longest string
+    if (firstString.length() >= secondString.length()) {
+      lengthOfLongest = firstString.length();
+    }
+    else {
+      lengthOfLongest = secondString.length();
+    }
+    
+    for (int index = 0; index < lengthOfLongest; index ++) {
+      // This if statement intertwines the strings and evaluates if the end of the shorter string has been reached
+      if ((firstString.length()) > index) {
+        builder.append(firstString.charAt(index));
+      }
+      if ((secondString.length()) > index) {
+        builder.append(secondString.charAt(index));
+      }
+    }
+    return (builder.toString());
+  }
+  
+  // This is a method that only returns the first and last letter of a word
+  // Works, just really janky. Lots of checks
+  public static String blankWords(String string) {
+    
+    // This local variable builds the string that will be returned
+    StringBuilder builder = new StringBuilder();
+    
+    // This local variable counts the words
+    int isThisAWord = 0;
+    
+    // This for loop runs through the entire string
+    for (int index = 0; index < string.length(); index ++) {
+      
+      // This if statement finds if the word is a new word
+      if (isThisAWord == 0) {
+        builder.append(string.charAt(index));
+        isThisAWord = 1;
+      }
+      // If it is a word, this else statement runs
+      else {  
+        // This if statement checks to see this is the last value of the string, if it is, it prints the last character
+        if ((index+1) == string.length()) {
+          builder.append(string.charAt(index));
+        }
+        // This else runs if there are more characters to check
+        else {
+          //This else checks to see if the next value is a space, if it is, it records the index value 
+          if ((string.charAt(index+1) == ' ') || (string.charAt(index+1) == '.')) {
+            builder.append(string.charAt(index));
+          }
+          // This checks to see if the index is a space. If it is, a space is recorded. This also restarts the word count
+          else if (string.charAt(index) == ' ') {
+            builder.append(" ");
+            isThisAWord = 0;
+          }
+          // This checks to see if the next character is NOT a space. If it is not, then it is replaced with a _
+          else if (string.charAt(index+1) != ' ') {
+            builder.append("_");
+          }
+        }
+      }
+    }
+    return (builder.toString());
+  }
+  
+  // This is a method that returns a string of words from another string but it's only the nth words from that string
+  public static String nthWord (int wordsShown, String string) {
+    
+    // This local variable builds the string that will be returned
+    StringBuilder builder = new StringBuilder();
+    
+    // This local varible counts the amount of words
+    int wordCount = 0;
+    
+    // This local variable counts how many spaces have been appended
+    int amountOfSpaces = 0;
+    
+    for (int index = 0; index < string.length(); index ++) {
+      
+      // This if statemtent finds if the character is a space or if the next space isn't a space so that it can be a a word
+      if (string.charAt(index) == ' ' && string.charAt(index+1) != ' ') {
+        wordCount = wordCount + 1;
+      }
+      else {
+        
+        // This if statement counts if the word needs to be recorded
+        if ((wordCount == 0) || (wordCount % wordsShown == 0)) {
+          amountOfSpaces = 0;
+          builder.append(string.charAt(index));
+        }
+        
+        // This checks if a space is needed
+        else if ((wordCount % wordsShown == 1) && (amountOfSpaces == 0)) {
+          builder.append(" ");
+          amountOfSpaces = 1;
+        }
+      }
+    }
+    return (builder.toString());
+  }
+  
+  // This is a method that truncates at the value that is next possible to be truncated at
+  public static String truncateAfter (int truncateValue, String string){
+    
+    // This local variable builds the string that will be returned
+    StringBuilder builder = new StringBuilder();
+    
+    for (int index = 0; index < string.length(); index ++) {
+      
+      /* This is an if statement that checks if the index is less than, equal to, or more than the truncate spot. If it
+       * is less than, the string continues, if it is equal to, it checks if that is a valid truncate spot, and if not,
+       * it appends. If it is greater than, it appends till the next valid truncation spot.
+       * */
+      if (index < truncateValue) {
+        if (string.charAt(index) == '-') {
+        }
+        else {
+          builder.append(string.charAt(index));
+        }
+      }
+      else if (index == truncateValue) {
+        if (string.charAt(index) == '-') {
+          builder.append(string.charAt(index));
+          return (builder.toString());
+        }
+        else if (string.charAt(index) == ' ') {
+          return (builder.toString());
+        }
+        else {
+          builder.append(string.charAt(index));
+        }
+      }
+      else if (index > truncateValue) {
+        if (string.charAt(index) == '-') {
+          builder.append(string.charAt(index));
+          return (builder.toString());
+        }
+        else if (string.charAt(index) == ' ') {
+          return (builder.toString());
+        }
+        else {
+          builder.append(string.charAt(index));
+        }
+      }
+    }
+    return (builder.toString());
+  }
+}

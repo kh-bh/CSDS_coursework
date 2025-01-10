@@ -1,0 +1,18 @@
+import org.junit.*;
+import static org.junit.Assert.*;
+
+/**
+ * Test classes DLNode
+ */
+public class DLNodeTester {
+  
+  @Test
+  public void testGetPrevious() {
+    DLNode test = new DLNode(1,null,null);
+    DLNode test1 = new DLNode(2,test,null);
+    DLNode test2 = new DLNode(3,test1,null);
+    assertEquals("Checking the first node from the back", null, test.getPrevious());
+    assertEquals("Checking the second node from the back", 1, test.getNext().getPrevious().getElement());
+    assertEquals("Checking the third node from the back", 2, test.getNext().getNext().getPrevious().getElement());
+  }
+}
