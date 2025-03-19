@@ -1,0 +1,5 @@
+---
+title: "Homework_6_Stat312R"
+format: html
+---
+

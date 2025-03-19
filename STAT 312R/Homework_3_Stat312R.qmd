@@ -1,0 +1,53 @@
+---
+title: "Homework_3_Stat312R"
+format: html
+---
+
+```{r 147, 4-76}
+
+#Mean
+mu <- 12.4
+#STD
+sigma <- 0.1
+
+# (a) Probability of X < 12
+prob_a <- pnorm(12, mean = mu, sd = sigma)
+print(paste("P(X < 12):", prob_a))
+
+# (b) Proportion of scrapped cans
+prob_scrap_low <- pnorm(12.1, mean = mu, sd = sigma)
+prob_scrap_high <- 1 - pnorm(12.6, mean = mu, sd = sigma)
+total_scrap <- prob_scrap_low + prob_scrap_high
+print(paste("Proportion scrapped:", total_scrap))
+
+# (c) 99% confidence interval
+z_value <- qnorm(0.995)
+lower_bound <- mu - (z_value * sigma)
+upper_bound <- mu + (z_value * sigma)
+print(paste("99% range: [", lower_bound, ",", upper_bound, "]"))
+```
+
+```{r P147 4-170}
+# Parameters
+theta <- 5
+omega <- sqrt(9)
+
+# (a) Compute P(X < 13300)
+p_a <- plnorm(13300, meanlog=theta, sdlog=omega)
+print(paste("P(X<13300) = ", p_a))
+
+# (b) Find x such that P(X <= x) = 0.95
+x_b <- qlnorm(0.95, meanlog=theta, sdlog=omega)
+print(paste("P(X<=x) = 0.95; x =", x_b))
+
+```
+
+```{r P147 4-174}
+# Parameters
+theta <- 3.98
+omega <- sqrt(1.24)
+
+# Compute P(X <= 5)
+p_b <- plnorm(5, meanlog=theta, sdlog=omega)
+print(paste("P(X<=5) = ",p_b))
+```
