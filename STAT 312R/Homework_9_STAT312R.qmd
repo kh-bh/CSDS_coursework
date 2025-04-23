@@ -1,0 +1,33 @@
+---
+title: "Homework_9_STAT312R"
+format: html
+---
+
+```{r}
+
+diameters <- c(8.24, 8.21, 8.23, 8.25, 8.26, 8.23, 8.20, 8.26, 8.19, 8.23, 
+               8.20, 8.28, 8.24, 8.25, 8.24)
+
+# NPP
+qqnorm(diameters)
+qqline(diameters, col = 'green')
+
+```
+
+```{r}
+t.test(diameters, mu = 8.25)
+```
+
+```{r}
+n <- length(diameters)
+s_sqr <- var(diameters)
+chi_sqr_stat <- (n - 1) * s_sqr / 0.0002
+p_value <- 1 - pchisq(chi_sqr_stat, df = n - 1)
+
+chi_sqr_stat
+p_value
+```
+
+```{r}
+pt(1.25,df=19)
+```

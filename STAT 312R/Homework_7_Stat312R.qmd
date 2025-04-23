@@ -1,0 +1,23 @@
+---
+title: "Homework_7_Stat312R"
+format: html
+---
+
+```{r}
+data <- c(16.8, 17.2, 17.4, 16.9, 16.5, 17.1)
+t.test(data, conf.level = 0.99)$conf.int
+```
+
+```{r}
+n <- length(data)
+s <- sd(data)
+
+chi2_lower <- qchisq(0.025, df=n-1)
+chi2_upper <- qchisq(0.975, df=n-1)
+
+std_lower <- sqrt((n-1) * s^2 / chi2_upper)
+std_upper <- sqrt((n-1) * s^2 / chi2_lower)
+
+c(std_lower, std_upper)
+
+```

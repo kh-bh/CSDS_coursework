@@ -1,0 +1,22 @@
+---
+title: "Homework_10_STAT312R"
+format: html
+---
+
+```{r}
+
+method1 <- c(47, 44, 43, 49, 48, 44.5, 48, 47, 46, 50)
+method2 <- c(45, 43, 42, 45, 46, 45, 44, 45, 44, 47)
+
+t.test(method1, method2, alternative = "less", var.equal = TRUE)
+
+par(mfrow = c(1, 2))
+
+qqnorm(method1, main = "Normal Plot: Method 1")
+qqline(method1, col = "green")
+
+qqnorm(method2, main = "Normal Plot: Method 2")
+qqline(method2, col = "pink")
+
+
+```

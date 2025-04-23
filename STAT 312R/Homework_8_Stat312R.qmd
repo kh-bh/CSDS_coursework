@@ -1,0 +1,13 @@
+---
+title: "Homework_8_Stat312R"
+format: html
+---
+
+```{r Problem 3}
+
+z_values <- c(-2.05, 1.84)
+
+p_values <- 1 - pnorm(z_values)
+
+p_values
+```
