@@ -1,4 +1,9 @@
 package bhoomika_spring_assignment.demo.repository;
 
-public class UserRepository {
+import bhoomika_spring_assignment.demo.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
+
+public interface UserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByUsername(String username);
 }
